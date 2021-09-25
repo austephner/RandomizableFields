@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace RandomizableIntFields.Editor
@@ -9,35 +10,27 @@ namespace RandomizableIntFields.Editor
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var randomizableAttribute = (RandomizableAttribute)attribute;
+            var typeCode = Type.GetTypeCode(fieldInfo.FieldType);
 
-            if (fieldInfo.FieldType.IsGenericType)
+            switch (typeCode)
             {
-                position.width -= 30;
-                EditorGUI.PropertyField(position, property, label);
-            }
-            else
-            {
-                // todo: show warning icon
-                GUI.Label(position, new GUIContent("Type Not Supported"));
-                return;
-            }
-
-            position.x += position.width + 5;
-            position.width = 25;
-
-            if (GUI.Button(position, "R"))
-            {
-                var genericType = fieldInfo.FieldType.GetGenericTypeDefinition();
-
-                if (genericType == typeof(float))
-                {
-                    property.floatValue = Random.Range(randomizableAttribute.min, randomizableAttribute.max);
-                }
-                else if (genericType == typeof(int)) 
-                {
-                    property.intValue = Mathf.RoundToInt(Random.Range(randomizableAttribute.min, randomizableAttribute.max));
-                }
+                case TypeCode.Single:
+                    RandomizableEditorGUI.DrawRandomizableFloatField(randomizableAttribute, position, property, label);
+                    break;
+                case TypeCode.Int16:
+                case TypeCode.Int32:
+                case TypeCode.Int64:
+                case TypeCode.UInt16:
+                case TypeCode.UInt32:
+                case TypeCode.UInt64:
+                    RandomizableEditorGUI.DrawAsInt(randomizableAttribute, position, property, label);
+                    break;
+                default:
+                    GUI.Label(position, new GUIContent("Type Not Supported"));
+                    return;
             }
         }
+
+        
     }
 }

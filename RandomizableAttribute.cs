@@ -14,7 +14,6 @@ namespace RandomizableIntFields
 
         public RandomizableAttribute(float max)
         {
-	        this.
 	        _max = max;
         }
 
