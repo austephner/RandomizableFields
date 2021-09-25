@@ -13,6 +13,7 @@ namespace RandomizableFields.Editor
             
             if (GUI.Button(position, "R"))
             {
+                EditorGUI.FocusTextInControl(null);
                 property.intValue = Mathf.RoundToInt(GetNextRandomNumericValue(randomizableAttribute));
             }
         }
@@ -23,6 +24,7 @@ namespace RandomizableFields.Editor
 
             if (GUI.Button(position, "R"))
             {
+                EditorGUI.FocusTextInControl(null);
                 property.floatValue = GetNextRandomNumericValue(randomizableAttribute);
             }
         }
@@ -33,6 +35,7 @@ namespace RandomizableFields.Editor
 
             if (GUI.Button(position, "R"))
             {
+                EditorGUI.FocusTextInControl(null);
                 property.stringValue = Guid.NewGuid().ToString();
             }
         }
