@@ -1,7 +1,9 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace RandomizableIntFields.Editor
+namespace RandomizableFields.Editor
 {
     public static class RandomizableEditorGUI
     {
@@ -11,7 +13,7 @@ namespace RandomizableIntFields.Editor
             
             if (GUI.Button(position, "R"))
             {
-                property.intValue = Mathf.RoundToInt(GetNextRandom(randomizableAttribute));
+                property.intValue = Mathf.RoundToInt(GetNextRandomNumericValue(randomizableAttribute));
             }
         }
 
@@ -21,7 +23,17 @@ namespace RandomizableIntFields.Editor
 
             if (GUI.Button(position, "R"))
             {
-                property.floatValue = GetNextRandom(randomizableAttribute);
+                property.floatValue = GetNextRandomNumericValue(randomizableAttribute);
+            }
+        }
+
+        public static void DrawRandomizableGuidField(RandomizableGuidAttribute randomizableGuidAttribute, Rect position, SerializedProperty property, GUIContent label)
+        {
+            DrawPropertyField(ref position, property, label);
+
+            if (GUI.Button(position, "R"))
+            {
+                property.stringValue = Guid.NewGuid().ToString();
             }
         }
 
@@ -33,7 +45,7 @@ namespace RandomizableIntFields.Editor
             position.width = 25;
         }
 
-        private static float GetNextRandom(RandomizableAttribute randomizableAttribute)
+        private static float GetNextRandomNumericValue(RandomizableAttribute randomizableAttribute)
         {
             return Random.Range(randomizableAttribute.min, randomizableAttribute.max);
         }

@@ -17,4 +17,3 @@ I use a lot of IMGUI `Window` functions for rapid prototyping. The IMGUI system 
 
 #### Goes Well With...
 - [ProtoGUI](https://github.com/austephner/ProtoGUI)
-- 

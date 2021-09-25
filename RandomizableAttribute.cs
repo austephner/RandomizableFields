@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace RandomizableIntFields
+namespace RandomizableFields
 {
     [AttributeUsage(AttributeTargets.Field)]
     public class RandomizableAttribute : PropertyAttribute

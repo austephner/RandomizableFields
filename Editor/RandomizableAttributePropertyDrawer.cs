@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace RandomizableIntFields.Editor
+namespace RandomizableFields.Editor
 {
     [CustomPropertyDrawer(typeof(RandomizableAttribute))]
     public class RandomizableAttributePropertyDrawer : PropertyDrawer
