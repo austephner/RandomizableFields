@@ -1,6 +1,6 @@
 {
   "name": "com.austephnerllc.randomizablefields",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Randomizable Fields",
   "description": "Collection of attributes for allowing randomizable fields within the Unity Editor.",
   "unity": "2020.3",
